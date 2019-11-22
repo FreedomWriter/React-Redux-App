@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const GET = "GET";
 export const ARTICLE_LOAD_START = "ARTICLE_LOAD_START";
 export const ARTICLE_LOAD_SUCCESS = "ARTICLE_LOAD_SUCCESS";
@@ -26,3 +28,4 @@ export function getArticleData(dispatch) {
         payload: "error loading data"
       });
     });
+}
