@@ -12,22 +12,8 @@ import {
 } from "../actions/async-actions";
 
 const initialState = {
-  articles: [
-    {
-      id: "",
-      type: "",
-      sectionId: "",
-      sectionName: "",
-      webPublicationDate: "",
-      webTitle: "",
-      webUrl: "",
-      apiUrl: "",
-      isHosted: "",
-      pillarId: "",
-      pillarName: "",
-      isLoading: false
-    }
-  ]
+  articles: [],
+  isLoading: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,12 +23,18 @@ const reducer = (state = initialState, action) => {
     case ARTICLE_LOAD_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        articles: [action.payload]
       };
     case ARTICLE_LOAD_SUCCESS:
+      console.log(
+        `redux: reducers: index,js: ARTICLE_LOAD_SUCCESS: action.payload: `,
+        action.payload
+      );
       return {
         ...state,
-        articles: { ...state.monster, joke: action.payload },
+        articles: action.payload,
+
         isLoading: false
       };
     case ARTICLE_LOAD_FAILURE:
