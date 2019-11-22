@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 import { getArticleData } from "./redux/actions/async-actions";
@@ -7,6 +7,10 @@ import ArticleList from "./components/Article/ArticleList";
 function App(props) {
   console.log(`App.js: props: `, props);
 
+  useEffect(() => {
+    props.getArticleData();
+  }, []);
+
   const [articlesFetched, setArticlesFetched] = useState(false);
   return (
     <div className="App">
@@ -14,7 +18,7 @@ function App(props) {
         `
         https://content.guardianapis.com/search?q=%22harlem%20renaissance%22&api-key=696c05ac-79f2-49ae-b5a8-24562cf3969e`
       </p>
-      <button
+      {/* <button
         onClick={() => {
           props.getArticleData();
           setArticlesFetched(true);
@@ -22,7 +26,8 @@ function App(props) {
       >
         Start Exploring
       </button>
-      {articlesFetched && <ArticleList />}
+      {articlesFetched && <ArticleList />} */}
+      <ArticleList />
     </div>
   );
 }
